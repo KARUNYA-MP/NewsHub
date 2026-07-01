@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?v=4">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+  <div class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-avatar-lg">
+        {{ request.user.username|slice:":1"|upper }}
+      </div>
+      <div class="profile-hero-info">
+        <h1 class="profile-name">{{ request.user.username }}</h1>
+        <p class="profile-email">{{ request.user.email|default:"No email set" }}</p>
+        <div class="profile-meta">
+          <span class="profile-badge">✅ Active Member</span>
+          {% if request.user.is_staff %}
+          <span class="profile-badge profile-badge--admin">🛡 Staff</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-content">
+
+    <div class="profile-card">
+      <h3 class="profile-card__title">Account Information</h3>
+      <div class="profile-info-row">
+        <span class="info-label">👤 Username</span>
+        <span class="info-value">{{ request.user.username }}</span>
+      </div>
+      <div class="profile-info-row">
+        <span class="info-label">📧 Email</span>
+        <span class="info-value">{{ request.user.email|default:"Not provided" }}</span>
+      </div>
+      <div class="profile-info-row">
+        <span class="info-label">📅 Joined</span>
+        <span class="info-value">{{ request.user.date_joined|date:"F d, Y" }}</span>
+      </div>
+      <div class="profile-info-row">
+        <span class="info-label">🕐 Last Login</span>
+        <span class="info-value">{{ request.user.last_login|date:"F d, Y, g:i a" }}</span>
+      </div>
+    </div>
+
+    <div class="profile-card profile-card--actions">
+      <h3 class="profile-card__title">Quick Actions</h3>
+      <div class="profile-actions">
+        <a href="{% url 'home' %}" class="profile-action-btn">
+          <span>🏠</span> Go to Home
+        </a>
+        <a href="{% url 'weather' %}" class="profile-action-btn">
+          <span>🌤</span> Weather
+        </a>
+        <a href="{% url 'live_news' %}" class="profile-action-btn">
+          <span>📡</span> Live News
+        </a>
+        <a href="{% url 'logout' %}" class="profile-action-btn profile-action-btn--danger">
+          <span>🚪</span> Sign Out
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

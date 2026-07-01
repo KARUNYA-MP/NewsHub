@@ -1,0 +1,65 @@
+<nav>
+
+    <div class="logo">
+        <a href="{% url 'home' %}">NewsHub</a>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'current_affairs' %}">
+            Current Affairs
+        </a>
+
+        <a href="{% url 'category' 1 %}">
+            Technology
+        </a>
+
+        <a href="{% url 'category' 2 %}">
+            Business
+        </a>
+
+        <a href="{% url 'category' 3 %}">
+            Sports
+        </a>
+
+        <a href="{% url 'category' 4 %}">
+            World
+        </a>
+
+        <a href="{% url 'category' 5 %}">
+            Science
+        </a>
+
+        <a href="{% url 'category' 6 %}">
+            Health
+        </a>
+
+        <a href="{% url 'live_news' %}">
+            Live News
+        </a>
+
+        <a href="{% url 'weather' %}">
+            Weather
+        </a>
+
+    </div>
+
+    <form action="{% url 'search' %}" method="GET">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search News"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+</nav>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Live News — NewsHub{% endblock %}
+
+{% block content %}
+<main class="page-wrapper">
+
+  <header class="section-header">
+    <h1 class="page-title">
+      <span class="live-dot">🔴</span> Live News
+    </h1>
+    <p class="page-subtitle">Top headlines from around the world, updated in real-time.</p>
+  </header>
+
+  <div class="cards-grid">
+    {% for article in articles %}
+    <article class="news-card">
+      <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer" class="news-card__img-wrap">
+        {% if article.urlToImage %}
+          <img src="{{ article.urlToImage }}" alt="{{ article.title }}" onerror="this.src='https://placehold.co/600x400?text=NewsHub';">
+        {% else %}
+          <img src="https://placehold.co/600x400?text=NewsHub" alt="No Image">
+        {% endif %}
+      </a>
+      
+      <div class="news-card__body">
+        <div class="news-card__category">
+          <span class="category-badge">Live Update</span>
+        </div>
+        <h3 class="news-card__title">
+          <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.title }}</a>
+        </h3>
+        <p class="news-card__summary">
+          {{ article.description|default:"No description available." }}
+        </p>
+        <div class="news-card__footer">
+          <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer" class="btn">Read Full Story ↗</a>
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <div class="empty-result">
+      <div class="empty-icon">📡</div>
+      <h3>No Live News Available</h3>
+      <p>We couldn't fetch live news at the moment. Please try again later.</p>
+    </div>
+    {% endfor %}
+  </div>
+
+</main>
+{% endblock %}

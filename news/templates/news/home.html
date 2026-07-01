@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=4">
+{% endblock %}
+
+{% block content %}
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-badge">🔴 Live &amp; Updated Daily</div>
+  <h1>Stay Informed,<br>Stay Ahead</h1>
+  <p>Your trusted source for breaking news, current affairs, technology, business, sports, and more — all in one place.</p>
+  <div class="hero-cta">
+    <a href="{% url 'current_affairs' %}" class="btn-hero-primary">Browse News →</a>
+    <a href="{% url 'live_news' %}" class="btn-hero-secondary">📡 Live News</a>
+  </div>
+</section>
+
+<!-- ══════ BREAKING NEWS TICKER ══════ -->
+<div class="breaking-news">
+  <div class="breaking-label">
+    <span class="breaking-dot"></span>
+    Breaking
+  </div>
+  <div class="ticker-wrapper">
+    <div class="ticker-content">
+      🇮🇳 India &nbsp;|&nbsp; 🌍 World &nbsp;|&nbsp; 💻 Technology &nbsp;|&nbsp; 💼 Business &nbsp;|&nbsp; ⚽ Sports &nbsp;|&nbsp; 🔬 Science &nbsp;|&nbsp; ❤️ Health &nbsp;|&nbsp; 📡 Live Updates &nbsp;|&nbsp; 🌤 Weather
+    </div>
+  </div>
+</div>
+
+<!-- ══════ LATEST NEWS ══════ -->
+<section class="home-section">
+  <div class="section-title-row">
+    <h2>Latest News</h2>
+    <a href="{% url 'current_affairs' %}" class="see-all-link">See all →</a>
+  </div>
+
+  <div class="card-container">
+    {% for article in articles %}
+    <div class="card">
+      <img src="{{ article.image.url }}" alt="{{ article.title }}">
+      <div class="card-content">
+        <h3>{{ article.category.name }}</h3>
+        <h4>{{ article.title }}</h4>
+        <p>{{ article.summary|truncatechars:120 }}</p>
+        <a href="{% url 'article_detail' article.id %}" class="btn">Read More →</a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="no-articles">
+      <div class="empty-icon">📭</div>
+      <h3>No Articles Yet</h3>
+      <p>Check back soon for the latest news.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ══════ BROWSE CATEGORIES ══════ -->
+<section class="categories-section">
+  <div class="home-section categories-inner">
+    <div class="section-title-row">
+      <h2>Browse Categories</h2>
+    </div>
+    <div class="category-grid">
+      <a href="{% url 'category' 1 %}" class="category-card">
+        <img src="{% static 'images/technology.jpg' %}" alt="Technology">
+        <h3>💻 Technology</h3>
+      </a>
+      <a href="{% url 'category' 2 %}" class="category-card">
+        <img src="{% static 'images/business.jpg' %}" alt="Business">
+        <h3>💼 Business</h3>
+      </a>
+      <a href="{% url 'category' 3 %}" class="category-card">
+        <img src="{% static 'images/sports.jpg' %}" alt="Sports">
+        <h3>⚽ Sports</h3>
+      </a>
+      <a href="{% url 'category' 4 %}" class="category-card">
+        <img src="{% static 'images/world.jpg' %}" alt="World">
+        <h3>🌍 World</h3>
+      </a>
+      <a href="{% url 'category' 5 %}" class="category-card">
+        <img src="{% static 'images/science.jpg' %}" alt="Science">
+        <h3>🔬 Science</h3>
+      </a>
+      <a href="{% url 'category' 6 %}" class="category-card">
+        <img src="{% static 'images/health.jpg' %}" alt="Health">
+        <h3>❤️ Health</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

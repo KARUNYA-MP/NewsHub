@@ -1,0 +1,34 @@
+{% load static %}
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">📰 NewsHub</div>
+      <p class="footer-tagline">Your Daily Current Affairs Portal. Stay informed with accurate, real-time news across various categories.</p>
+    </div>
+    
+    <div class="footer-links-wrapper">
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="{% url 'category' 1 %}">Technology</a></li>
+          <li><a href="{% url 'category' 2 %}">Business</a></li>
+          <li><a href="{% url 'category' 3 %}">Sports</a></li>
+          <li><a href="{% url 'category' 4 %}">World</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'current_affairs' %}">Current Affairs</a></li>
+          <li><a href="{% url 'live_news' %}">Live News</a></li>
+          <li><a href="{% url 'weather' %}">Weather Forecast</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; {% now "Y" %} NewsHub | All Rights Reserved.</p>
+  </div>
+</footer>

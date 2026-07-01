@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Weather — NewsHub{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/weather.css' %}?v=3">
+{% endblock %}
+
+{% block content %}
+
+<div class="weather-page">
+
+  <!-- ═══════════════ HERO SEARCH ═══════════════ -->
+  <div class="weather-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌍 Real-Time Weather</div>
+      <h1 class="hero-title">Weather Forecast</h1>
+      <p class="hero-subtitle">Search any city worldwide for live conditions &amp; 5-day forecast</p>
+
+      <form method="GET" action="{% url 'weather' %}" class="search-bar" id="weather-search-form">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            name="city"
+            id="city-input"
+            placeholder="Enter city name (e.g. Mumbai, London, Tokyo)…"
+            value="{{ city_input }}"
+            autocomplete="off"
+            required>
+          <button type="submit" class="search-btn" id="search-btn">
+            <span class="btn-text">Search</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+  <div class="weather-content">
+
+    <!-- ─── ERROR STATE ─── -->
+    {% if error %}
+    <div class="error-card" id="error-state">
+      <div class="error-icon">⚠️</div>
+      <h3 class="error-title">Oops! Something went wrong</h3>
+      <p class="error-message">{{ error }}</p>
+      <a href="{% url 'weather' %}" class="error-reset-btn">Try Again</a>
+    </div>
+    {% endif %}
+
+    <!-- ─── CURRENT WEATHER CARD ─── -->
+    {% if weather %}
+    <div class="current-weather-section">
+
+      <div class="current-card" id="current-weather-card">
+
+        <!-- Left: Main Info -->
+        <div class="current-main">
+          <div class="location-info">
+            <h2 class="city-name">
+              📍 {{ weather.city }}{% if weather.country %}, {{ weather.country }}{% endif %}
+            </h2>
+            <p class="weather-desc">{{ weather.description }}</p>
+          </div>
+
+          <div class="temp-display">
+            <img
+              src="https://openweathermap.org/img/wn/{{ weather.icon }}@4x.png"
+              alt="{{ weather.description }}"
+              class="weather-icon-img">
+            <div class="temp-info">
+              <span class="temp-value">{{ weather.temp }}°</span>
+              <span class="temp-unit">Celsius</span>
+              <span class="feels-like">Feels like {{ weather.feels_like }}°C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Stats Grid -->
+        <div class="current-stats">
+
+          <div class="stat-pill" id="stat-humidity">
+            <span class="stat-emoji">💧</span>
+            <div class="stat-body">
+              <span class="stat-label">Humidity</span>
+              <span class="stat-value">{{ weather.humidity }}%</span>
+            </div>
+          </div>
+
+          <div class="stat-pill" id="stat-wind">
+            <span class="stat-emoji">🌬</span>
+            <div class="stat-body">
+              <span class="stat-label">Wind Speed</span>
+              <span class="stat-value">{{ weather.wind }} m/s</span>
+            </div>
+          </div>
+
+          <div class="stat-pill" id="stat-pressure">
+            <span class="stat-emoji">🌡</span>
+            <div class="stat-body">
+              <span class="stat-label">Pressure</span>
+              <span class="stat-value">{{ weather.pressure }} hPa</span>
+            </div>
+          </div>
+
+          <div class="stat-pill" id="stat-visibility">
+            <span class="stat-emoji">👁</span>
+            <div class="stat-body">
+              <span class="stat-label">Visibility</span>
+              <span class="stat-value">{{ weather.visibility }} km</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── 5-DAY FORECAST ─── -->
+    {% if forecast %}
+    <div class="forecast-section">
+      <h2 class="section-title">
+        <span class="section-icon">📅</span>
+        5-Day Forecast
+      </h2>
+
+      <div class="forecast-grid" id="forecast-grid">
+        {% for day in forecast %}
+        <div class="forecast-card" id="forecast-day-{{ forloop.counter }}">
+
+          <div class="forecast-day-label">
+            <span class="day-short">{{ day.day }}</span>
+            <span class="day-date">{{ day.date }}</span>
+          </div>
+
+          <img
+            src="https://openweathermap.org/img/wn/{{ day.icon }}@2x.png"
+            alt="{{ day.description }}"
+            class="forecast-icon">
+
+          <p class="forecast-desc">{{ day.description }}</p>
+
+          <div class="forecast-temps">
+            <span class="temp-high">{{ day.temp_max }}°</span>
+            <span class="temp-separator">/</span>
+            <span class="temp-low">{{ day.temp_min }}°</span>
+          </div>
+
+          <div class="forecast-humidity">
+            💧 {{ day.humidity }}%
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% elif not error %}
+    <!-- ─── EMPTY STATE (no search yet) ─── -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🌤</div>
+      <h3>Search for a City</h3>
+      <p>Enter a city name above to get live weather conditions and a 5-day forecast.</p>
+    </div>
+    {% endif %}
+
+  </div><!-- /weather-content -->
+
+</div><!-- /weather-page -->
+
+{% endblock %}

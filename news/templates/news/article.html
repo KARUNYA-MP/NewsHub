@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ article.title }} — NewsHub
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}?v=4">
+{% endblock %}
+
+{% block content %}
+<main class="article-page">
+  <div class="article-container">
+
+    <!-- Breadcrumb -->
+    <nav class="article-breadcrumb">
+      <a href="{% url 'home' %}">Home</a>
+      <span>/</span>
+      <a href="{% url 'category' article.category.id %}">{{ article.category.name }}</a>
+      <span>/</span>
+      <span class="breadcrumb-current">Article</span>
+    </nav>
+
+    <article class="article-card">
+      {% if article.image %}
+        <img src="{{ article.image.url }}" class="article-hero-img" alt="{{ article.title }}">
+      {% else %}
+        <img src="https://placehold.co/1200x600?text=NewsHub" class="article-hero-img" alt="Placeholder">
+      {% endif %}
+
+      <div class="article-body">
+        
+        <div class="article-meta">
+          <span class="article-category-badge">{{ article.category.name }}</span>
+          <span class="article-date">Published Today</span> <!-- Assuming no date field, static text for now -->
+        </div>
+
+        <h1 class="article-title">{{ article.title }}</h1>
+        
+        <div class="article-divider"></div>
+
+        <div class="article-text">
+          <p>{{ article.content }}</p>
+        </div>
+
+        <a href="javascript:history.back()" class="back-btn">
+          <span>←</span> Back to News
+        </a>
+
+      </div>
+    </article>
+
+  </div>
+</main>
+{% endblock %}

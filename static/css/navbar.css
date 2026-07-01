@@ -1,0 +1,302 @@
+/* ═══════════════════════════════════════════════
+   NAVBAR — Clean, Sticky, Professional
+   ═══════════════════════════════════════════════ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255,255,255,0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  transition: var(--ease);
+}
+
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Logo ── */
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  transition: var(--ease);
+}
+
+.logo:hover { color: var(--primary-hover); }
+.logo-icon { font-size: 20px; }
+
+/* ── Nav Links ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links li a {
+  display: block;
+  padding: 6px 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-m);
+  border-radius: var(--r-sm);
+  transition: var(--ease);
+  white-space: nowrap;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ── Right Section ── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Search form */
+.nav-search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-search-form input {
+  width: 170px;
+  padding: 8px 36px 8px 16px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text-b);
+  border-radius: var(--r-full);
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  transition: var(--ease);
+}
+
+.nav-search-form input:focus {
+  border-color: var(--primary);
+  width: 240px;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.nav-search-form input::placeholder { color: var(--text-l); }
+
+.nav-search-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: var(--ease);
+  flex-shrink: 0;
+}
+
+.nav-search-btn:hover { background: var(--primary-hover); transform: translateY(-50%) scale(1.08); }
+
+/* Auth buttons */
+.nav-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-b);
+  transition: var(--ease);
+}
+
+.nav-profile-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.nav-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--purple));
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: var(--r-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dc2626;
+  transition: var(--ease);
+}
+
+.nav-logout-btn:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.nav-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: var(--primary);
+  border-radius: var(--r-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: white;
+  transition: var(--ease);
+  border: none;
+}
+
+.nav-login-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-blue);
+  color: white;
+}
+
+/* Mobile hamburger */
+.nav-mobile-search {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+.nav-mobile-search-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+.nav-mobile-search-btn {
+  padding: 10px 18px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-b);
+  border-radius: 2px;
+  transition: var(--ease);
+}
+
+/* Mobile menu */
+.nav-mobile-menu {
+  display: none;
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-mobile-menu a {
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-b);
+  border-radius: var(--r-sm);
+  display: block;
+  transition: var(--ease);
+}
+
+.nav-mobile-menu a:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .nav-links { gap: 0; }
+  .nav-links li a { padding: 6px 8px; font-size: 13px; }
+  .nav-search-form input { width: 140px; }
+}
+
+@media (max-width: 950px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-search-form input { width: 180px; }
+}
+
+@media (max-width: 560px) {
+  .navbar-inner { padding: 0 16px; gap: 12px; }
+  .nav-search-form { display: none; }
+}

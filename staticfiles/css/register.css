@@ -1,0 +1,98 @@
+/* register.css — inherits auth styles from login.css */
+
+/* Form group (Django-rendered fields) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-b);
+  letter-spacing: 0.2px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text-b);
+  outline: none;
+  transition: var(--ease);
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+.form-group input::placeholder { color: var(--text-l); }
+
+/* Hide Django help text (too verbose) */
+.helptext { display: none !important; }
+
+/* Error list */
+.errorlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.errorlist li {
+  font-size: 12.5px;
+  color: var(--danger);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.errorlist li::before { content: '⚠ '; }
+
+/* Non-field errors */
+.non-field-errors {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  margin-bottom: 4px;
+}
+
+.non-field-errors li {
+  font-size: 13px;
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+/* Register button */
+.btn-register {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--secondary), #059669);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--ease);
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+
+.btn-register:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.35);
+}

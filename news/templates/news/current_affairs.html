@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Current Affairs — NewsHub{% endblock %}
+
+{% block content %}
+<main class="page-wrapper">
+
+  <header class="section-header">
+    <h1 class="page-title">Current Affairs</h1>
+    <p class="page-subtitle">Stay up-to-date with the most important stories around the globe.</p>
+  </header>
+
+  <div class="cards-grid">
+    {% for article in articles %}
+    <article class="news-card">
+      <a href="{% url 'article_detail' article.id %}" class="news-card__img-wrap">
+        {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        {% else %}
+        <img src="https://placehold.co/600x400?text=NewsHub" alt="Placeholder">
+        {% endif %}
+      </a>
+      
+      <div class="news-card__body">
+        <div class="news-card__category">
+          <span class="category-badge">{{ article.category.name }}</span>
+        </div>
+        <h3 class="news-card__title">
+          <a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+        </h3>
+        <p class="news-card__summary">
+          {{ article.summary|truncatechars:120 }}
+        </p>
+        <div class="news-card__footer">
+          <a href="{% url 'article_detail' article.id %}" class="btn">Read More →</a>
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <div class="empty-result">
+      <div class="empty-icon">📭</div>
+      <h3>No Articles Found</h3>
+      <p>There are currently no current affairs articles available.</p>
+    </div>
+    {% endfor %}
+  </div>
+
+</main>
+{% endblock %}
