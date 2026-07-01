@@ -16,7 +16,7 @@
     <article class="news-card">
       <a href="{% url 'article_detail' article.id %}" class="news-card__img-wrap">
         {% if article.image %}
-        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=NewsHub';">
         {% else %}
         <img src="https://placehold.co/600x400?text=NewsHub" alt="Placeholder">
         {% endif %}

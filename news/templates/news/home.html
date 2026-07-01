@@ -43,7 +43,11 @@
   <div class="card-container">
     {% for article in articles %}
     <div class="card">
-      <img src="{{ article.image.url }}" alt="{{ article.title }}">
+      {% if article.image %}
+      <img src="{{ article.image.url }}" alt="{{ article.title }}" onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=NewsHub';">
+      {% else %}
+      <img src="https://placehold.co/600x400?text=NewsHub" alt="Placeholder">
+      {% endif %}
       <div class="card-content">
         <h3>{{ article.category.name }}</h3>
         <h4>{{ article.title }}</h4>
